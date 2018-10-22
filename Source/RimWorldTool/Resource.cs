@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Resources
+namespace RimWorldTool.Resources
 {
     public class Resource
     {

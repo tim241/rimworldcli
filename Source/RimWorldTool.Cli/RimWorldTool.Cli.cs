@@ -13,9 +13,10 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using RimWorldUtils;
+using RimWorldTool;
+using RimWorldTool.Mods;
 
-namespace RimWorldCli
+namespace RimWorldTool.Cli
 {
     class Program
     {

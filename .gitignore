@@ -1,3 +1,4 @@
 Bin/
-Source/RimWorldCli/obj
+Source/RimWorldTool/obj
+Source/RimWorldTool.Cli/obj
 .vscode/

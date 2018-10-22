@@ -1,0 +1,13 @@
+image: archlinux/base
+
+before_script:
+    - pacman -Syu --noconfirm
+    - pacman -S dotnet-host dotnet-runtime dotnet-sdk fuse2 base-devel --noconfirm
+
+package:
+    stage: build
+    script:
+      - ./Scripts/package.sh
+    artifacts:
+      paths:
+      - Bin/AppImage

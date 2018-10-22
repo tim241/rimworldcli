@@ -15,13 +15,14 @@
 
 using System.IO;
 using System.Reflection;
-using Resources;
+using RimWorldTool;
+using RimWorldTool.Resources;
 
-namespace RimWorldCli
+namespace RimWorldTool.Utilities
 {
     public static class Utils
     {
-        private static AssemblyName assemblyName = new AssemblyName(nameof(RimWorldCli));
+        private static AssemblyName assemblyName = new AssemblyName("RimWorldTool");
         public static void CopyResource(string fileName, string dest)
         {
             Resource file = new Resource(fileName, assemblyName);

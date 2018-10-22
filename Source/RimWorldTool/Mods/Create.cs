@@ -16,11 +16,12 @@
 using System;
 using System.IO;
 
-using RimWorldCli;
+using RimWorldTool;
+using RimWorldTool.Utilities;
 
-namespace RimWorldUtils
+namespace RimWorldTool.Mods
 {
-    public static class Mod
+    public static partial class Mod
     {
         public static void Create(string modName, string path = null)
         {
