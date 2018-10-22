@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputPath>..\..\Bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Resources\*" />
+    <!-- Template Mod Info -->
+    <EmbeddedResource Include="..\..\Resources\Template_Mod\About\*" />
+    <EmbeddedResource Include="..\..\Resources\Template_Mod\Source\*" />
+    <!-- Template C# Code -->
+    <EmbeddedResource Include="..\..\Resources\Template_Mod\Source\@@MOD_NAME@@\*" />
+    <EmbeddedResource Include="..\..\Resources\Template_Mod\Source\@@MOD_NAME@@\Properties\*" />
+  </ItemGroup>
+</Project>
