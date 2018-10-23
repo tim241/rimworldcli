@@ -19,7 +19,7 @@ using RimWorldTool.Mods;
 
 namespace RimWorldTool.Cli
 {
-    class Program
+    partial class Program
     {
         public static int counter = 0;
         static void usage(string catagory = null, string item = null)
@@ -30,12 +30,7 @@ namespace RimWorldTool.Cli
         }
         static void Main(string[] args)
         {
-            // category settings
-            bool mod = false;
-            bool run = false;
-            bool config = false;
-            bool help = false;
-            bool category = false;
+            ArgumentCategory category = ArgumentCategory.None;
 
             foreach (string arg in args)
             {
@@ -43,27 +38,25 @@ namespace RimWorldTool.Cli
                 /*
                  * Categories
                  */
-                if (!category)
+                if (category == ArgumentCategory.None)
                 {
                     switch (arg)
                     {
                         case "help":
-                            help = true;
+                            category = ArgumentCategory.Help;
                             break; ;
                         case "config":
-                            config = true;
+                            category = ArgumentCategory.Config;
                             break; ;
                         case "mod":
-                            mod = true;
+                            category = ArgumentCategory.Mod;
                             break; ;
                         case "run":
-                            run = true;
+                            category = ArgumentCategory.Run;
                             break; ;
                     }
 
-                    if (mod || config || run || help)
-                        category = true;
-                    else
+                    if (category == ArgumentCategory.None)
                         usage();
                 }
                 else
@@ -71,20 +64,19 @@ namespace RimWorldTool.Cli
                     /*
                      * mod options
                      */
-                    if (mod)
+                    if (category == ArgumentCategory.Mod)
                         ArgumentOptions.Mod(arg, args);
                     /*
                      * config options
                      */
-                    if (config)
+                    if (category == ArgumentCategory.Config)
                         ArgumentOptions.Config(arg, args);
                     /*
                      * help options
                      */
-                    if (help)
+                    if (category == ArgumentCategory.Help)
                         ArgumentOptions.Help(arg, args);
                 }
-
             }
         }
     }
