@@ -12,13 +12,21 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+using System;
 namespace RimWorldTool.Cli
 {
     public static partial class ArgumentUsage
     {
-        public static void Mod(string item = null)
+        public static void Mod(string item = null, int exitCode = 1)
         {
+            Usage usage = new Usage();
+            usage.category = "mod";
+            usage.AddOption("create [NAME]", "creates a new mod with [NAME]");
+            usage.AddOption("create [NAME] -o    [DIR],create [NAME] --out [DIR]", "creates a new mod in [DIR] with [NAME]");
+            usage.Show();
             
+            Environment.Exit(exitCode);
         }
     }
 }

@@ -17,17 +17,6 @@ namespace RimWorldTool.Cli
 {
     public static partial class ArgumentOptions
     {
-        public static void Help(string arg, string[] args)
-        {
-            // TODO
-            /* 
-            if (args.Length > counter)
-                usage(args[counter - 1], args[counter]);
-            else if (args.Length == counter)
-                usage(args[counter - 1]);
-            else
-                usage();
-            */
-        }
+        public static void Help(string arg, string[] args) => ArgumentUsage.Help(arg);
     }
 }

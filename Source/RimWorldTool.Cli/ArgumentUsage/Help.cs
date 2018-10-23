@@ -12,13 +12,34 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+using System;
+
 namespace RimWorldTool.Cli
 {
     public static partial class ArgumentUsage
     {
+        private static void helpUsage(int exitCode = 0)
+        {
+            Usage usage = new Usage();
+            usage.category = "help";
+            usage.AddOption("mod", "shows the help for mod");
+            usage.Show();
+
+            Environment.Exit(exitCode);
+        }
         public static void Help(string item = null)
         {
-            
+            Usage usage = new Usage();
+            switch (item)
+            {
+                default:
+                    helpUsage(1);
+                    break; ;
+                case "mod":
+                    ArgumentUsage.Mod(null, 0);
+                    break; ;
+            }
         }
     }
 }

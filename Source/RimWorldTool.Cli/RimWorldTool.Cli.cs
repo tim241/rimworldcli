@@ -16,22 +16,24 @@
 using System;
 using RimWorldTool;
 using RimWorldTool.Mods;
+using RimWorldTool.Cli;
 
 namespace RimWorldTool.Cli
 {
-    partial class Program
+    public partial class Program
     {
         public static int counter = 0;
-        static void usage(string catagory = null, string item = null)
+        public static ArgumentCategory category = ArgumentCategory.None;
+
+        static void showBasicUsage()
         {
-            // 
-            Console.WriteLine($"{catagory} {item} Hello World");
+            ArgumentUsage.Usage usage = new ArgumentUsage.Usage();
+            usage.AddOption("help", "displays usage");
+            usage.Show();
             Environment.Exit(1);
         }
         static void Main(string[] args)
         {
-            ArgumentCategory category = ArgumentCategory.None;
-
             foreach (string arg in args)
             {
                 counter++;
@@ -43,6 +45,8 @@ namespace RimWorldTool.Cli
                     switch (arg)
                     {
                         case "help":
+                            if (args.Length <= counter)
+                                ArgumentOptions.Help(null, null);
                             category = ArgumentCategory.Help;
                             break; ;
                         case "config":
@@ -57,27 +61,26 @@ namespace RimWorldTool.Cli
                     }
 
                     if (category == ArgumentCategory.None)
-                        usage();
+                        showBasicUsage();
                 }
                 else
                 {
-                    /*
-                     * mod options
-                     */
+                    // mod category
                     if (category == ArgumentCategory.Mod)
                         ArgumentOptions.Mod(arg, args);
-                    /*
-                     * config options
-                     */
+
+                    // config category
                     if (category == ArgumentCategory.Config)
                         ArgumentOptions.Config(arg, args);
-                    /*
-                     * help options
-                     */
+
+                    // help category
                     if (category == ArgumentCategory.Help)
                         ArgumentOptions.Help(arg, args);
                 }
             }
+
+            if (counter == 0)
+               showBasicUsage();
         }
     }
 }
