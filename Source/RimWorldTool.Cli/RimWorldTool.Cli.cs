@@ -34,6 +34,7 @@ namespace RimWorldTool.Cli
         }
         static void Main(string[] args)
         {
+            bool noNext = false;
             foreach (string arg in args)
             {
                 counter++;
@@ -42,17 +43,27 @@ namespace RimWorldTool.Cli
                  */
                 if (category == ArgumentCategory.None)
                 {
+                    if (args.Length <= counter)
+                        noNext = true;
+
                     switch (arg)
                     {
                         case "help":
-                            if (args.Length <= counter)
+                            if (noNext)
                                 ArgumentOptions.Help(null, null);
+                                
                             category = ArgumentCategory.Help;
                             break; ;
                         case "config":
+                            if (noNext)
+                                ArgumentOptions.Config(null, null);
+
                             category = ArgumentCategory.Config;
                             break; ;
                         case "mod":
+                            if (noNext)
+                                ArgumentOptions.Mod(null, null);
+
                             category = ArgumentCategory.Mod;
                             break; ;
                         case "run":
@@ -80,7 +91,7 @@ namespace RimWorldTool.Cli
             }
 
             if (counter == 0)
-               showBasicUsage();
+                showBasicUsage();
         }
     }
 }
