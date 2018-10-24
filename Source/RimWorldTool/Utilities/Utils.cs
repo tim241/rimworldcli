@@ -30,15 +30,31 @@ namespace RimWorldTool.Utilities
         }
         public static void CreateDirectories(string[] dirs)
         {
-            foreach(string dir in dirs)
+            foreach (string dir in dirs)
             {
                 Directory.CreateDirectory(dir);
             }
         }
-
-        public static void ReplaceText(string file, string replace, string replaceText)
+        
+        public static void ReplaceText(string file, string[] syntax)
         {
-            string text = File.ReadAllText(file).Replace(replace, replaceText);
+            string text = File.ReadAllText(file);
+            string source, replacement;
+            string[] syntaxItemArray;
+
+            foreach (string syntaxItem in syntax)
+            {
+                if (!syntaxItem.Contains(":"))
+                    throw new InvalidDataException("syntax is incorrect!");
+
+                syntaxItemArray = syntaxItem.Split(':');
+
+                source = syntaxItemArray[0];
+                replacement = syntaxItemArray[1];
+
+                text = text.Replace(source, replacement);
+            }
+
             File.WriteAllText(file, text);
         }
     }

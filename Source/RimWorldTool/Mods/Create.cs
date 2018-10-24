@@ -54,12 +54,13 @@ namespace RimWorldTool.Mods
 
             foreach (string file in new string[] { aboutXml, modCs, modCsProj, modSln, modAssemblyInfo })
             {
-                Utils.ReplaceText(file, "@@MOD_NAME@@", modName);
-
-                // TODO
-                Utils.ReplaceText(file, "@@AUTHOR@@", null);
-                Utils.ReplaceText(file, "@@URL@@", null);
-                Utils.ReplaceText(file, "@@RIMWORLD_VERSION@@", null);
+                Utils.ReplaceText(file, new string[] { 
+                    $"@@MOD_NAME@@:{modName}",
+                    // TODO
+                    $"@@AUTHOR@@:{null}",
+                    $"@@URL@@:{null}",
+                    $"@@RIMWORLD_VERSION@@:{null}"
+                });
             }
         }
 
