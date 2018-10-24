@@ -59,6 +59,11 @@ namespace RimWorldTool.Resources
                         outputFile.Write(bytes, 0, bytesRead);
                         outputFile.Flush();
                     }
+
+                    // sanity flush
+                    outputFile.Flush();
+                    // close the file
+                    outputFile.Close();
                 }
             }
             catch (Exception)
